@@ -11,6 +11,9 @@ vector<bool> check;
 bool isHappy;
 
 void findAnswer(int r) { // DFS
+    
+    if (isHappy)
+        return;
 
 	check[r] = true;
 
@@ -50,8 +53,8 @@ void input() {
 }
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(NULL);
+    // ios::sync_with_stdio(false);
+	// cin.tie(NULL);
 	input();
 	return 0;
 }
