@@ -26,21 +26,25 @@ void input() {
 	sort(v.begin(), v.end());
 }
 
-bool isSamePack(int a, int b) {
+int find(int a) {
 
-	if (pack[a] == pack[b])
-		return true;
-	else
-		return false;
+	if (pack[a] == a)
+		return a;
+	else 
+		return pack[a] = find(pack[a]);
 }
 
-void makeSamepack(int a, int b) {
-	int Min = min(pack[a], pack[b]);
-	int Max = max(pack[a], pack[b]);
-	for (int i = 1; i <= N; ++i) {
-		if (pack[i] == Max)
-			pack[i] = Min;
-	}
+bool isSamePack(int a, int b) {
+
+	a = find(a);
+	b = find(b);
+
+	if (a == b) 
+		return false;
+
+	pack[b] = a;
+
+	return true;
 }
 
 void findAnswer() { // 최소신장트리
@@ -52,17 +56,17 @@ void findAnswer() { // 최소신장트리
 		int a = v[i].second.first;
 		int b = v[i].second.second;
 		
-		if (isSamePack(a, b)) {
-			continue;
+		bool isNotSame = isSamePack(a, b);
+
+		if (isNotSame) {
+			sum += v[i].first;
+			cnt++;
 		}
-
-		sum += v[i].first;
-		cnt++;
-		makeSamepack(a, b);
-
+		
 		if (cnt == N - 1)
 			break;
 	}
+
 	cout << sum << "\n";
 }
 
