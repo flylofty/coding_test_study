@@ -72,6 +72,7 @@ void findSituation(vector<int> t, int previous) {
 		int result = zero - cnt - 3;
 		if (result > Max) {
 			Max = result;
+			
 			// cout << s[t[0]].first << ", " << s[t[0]].second << "\n";
 			// cout << s[t[1]].first << ", " << s[t[1]].second << "\n";
 			// cout << s[t[2]].first << ", " << s[t[2]].second << "\n";
