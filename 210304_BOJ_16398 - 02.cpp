@@ -61,7 +61,6 @@ void prim(int start) {
 			pq.push({ cost2, y });
 		}
 	}
-
 	cout << sum << "\n";
 }
 
