@@ -11,8 +11,7 @@ public class Boj_17471 {
     static int Min = INF;
     static int[] p;
     static int[][] e;
-    static boolean[] connectionInfo;
-    static int target;
+    static boolean[] t;
     static Queue<Integer> q = new LinkedList<>();
 
     public static void main(String[] args) throws IOException {
@@ -20,7 +19,6 @@ public class Boj_17471 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         N = Integer.parseInt(br.readLine());
-        target = N / 2;
 
         p = new int[N];
         String s = br.readLine();
@@ -40,8 +38,8 @@ public class Boj_17471 {
             }
         }
 
-        boolean[] t = new boolean[N];
-        findAnswer(t, 0);
+        t = new boolean[N];
+        findAnswer(t, 0, -1);
 
         if (Min < INF)
             System.out.println(Min);
@@ -60,14 +58,14 @@ public class Boj_17471 {
 
             int x = q.poll();
 
-            if (connectionInfo[start] == connectionInfo[x])
+            if (t[start] == t[x])
                 cnt++;
 
             for(int i = 0; i < e[x].length; ++i) {
 
                 int y = e[x][i];
 
-                if (!check[y] && connectionInfo[x] == connectionInfo[y]) {
+                if (!check[y] && t[x] == t[y]) {
                     q.add(y);
                     check[y] = true;
                 }
@@ -76,17 +74,16 @@ public class Boj_17471 {
 
         int realCnt = 0;
         for(int i = 0; i < N; ++i) {
-            if (connectionInfo[start] == connectionInfo[i])
+            if (t[start] == t[i])
                 realCnt++;
         }
 
-        q.clear();
         return realCnt == cnt;
     }
 
-    static void findAnswer(boolean[] t, int cnt) {
+    static void findAnswer(boolean[] t, int cnt, int pre) {
 
-        if (0 < cnt && cnt <= target) {
+        if (0 < cnt && cnt <= (N / 2)) {
 
             int firstFalse = 0;
             while(t[firstFalse])
@@ -95,8 +92,6 @@ public class Boj_17471 {
             int firstTrue = 0;
             while(!t[firstTrue])
                 firstTrue++;
-
-            connectionInfo = t;
 
             if (isConnected(firstFalse) && isConnected(firstTrue)) {
                 int a = 0, b = 0;
@@ -111,16 +106,13 @@ public class Boj_17471 {
                 Min = Math.min(Min, Math.abs(a - b));
             }
 
-            if (cnt == target)
+            if (cnt == (N / 2))
                 return;
         }
 
-        for(int i = 0; i < N; ++i) {
-
-            if (t[i]) continue;
-
+        for(int i = pre + 1; i < N; ++i) {
             t[i] = true;
-            findAnswer(t, cnt + 1);
+            findAnswer(t,cnt + 1, i);
             t[i] = false;
         }
     }
