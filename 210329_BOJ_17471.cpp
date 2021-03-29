@@ -8,9 +8,10 @@ const int INF = 987654321;
 int N, Min = INF;
 vector<int> p(10);
 vector<int> e[10];
+vector<bool> t(10, false);
 queue <int> q;
 
-bool isConnected(int& start, vector<bool>& t) {
+bool isConnected(int& start) {
 
 	int cnt = 0;
 	vector<bool> check(N, false);
@@ -44,7 +45,7 @@ bool isConnected(int& start, vector<bool>& t) {
 	return cnt == realCnt;
 }
 
-void findAnswer(vector<bool> t, int cnt, int pre) {
+void findAnswer(int cnt, int pre) {
 
 	if (0 < cnt && cnt <= (N / 2)) {
 
@@ -56,7 +57,7 @@ void findAnswer(vector<bool> t, int cnt, int pre) {
 		while (!t[firstTrue])
 			firstTrue++;
 
-		if (isConnected(firstFalse, t) && isConnected(firstTrue, t)) {
+		if (isConnected(firstFalse) && isConnected(firstTrue)) {
 			int a = 0, b = 0;
 			for (int i = 0; i < N; ++i) {
 				if (t[i])
@@ -74,16 +75,17 @@ void findAnswer(vector<bool> t, int cnt, int pre) {
 
 	for (int i = pre + 1; i < N; ++i) {
 		t[i] = true;
-		findAnswer(t, cnt + 1, i);
+		findAnswer(cnt + 1, i);
 		t[i] = false;
 	}
 }
 
 int main() {
-    
-    ios::sync_with_stdio(0), cin.tie(0);
+
+	ios::sync_with_stdio(0), cin.tie(0);
 
 	cin >> N;
+
 	for (int i = 0; i < N; ++i)
 		cin >> p[i];
 
@@ -95,8 +97,7 @@ int main() {
 		}
 	}
 
-	vector<bool> t(N, false);
-	findAnswer(t, 0, -1);
+	findAnswer(0, -1);
 
 	if (Min != INF)
 		cout << Min << "\n";
