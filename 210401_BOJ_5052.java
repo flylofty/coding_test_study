@@ -16,9 +16,8 @@ public class Main {
 
             int n = Integer.parseInt(br.readLine());
             String[] strings = new String[n];
-            for(int i = 0; i < n; ++i) {
+            for(int i = 0; i < n; ++i)
                 strings[i] = br.readLine();
-            }
 
             Arrays.sort(strings, Comparator.comparing(String::length));
 
