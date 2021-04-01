@@ -29,6 +29,7 @@ public class Main {
             for(int i = 0; i < n; ++i) {
                 s[i] = br.readLine();
             }
+            
             Arrays.sort(s, Comparator.comparing(String::length));
 
             strings = s;
