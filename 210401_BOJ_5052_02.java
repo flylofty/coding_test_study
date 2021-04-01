@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class Boj_5052_02 {
+public class Main {
 
     static String[] strings;
 
