@@ -62,7 +62,6 @@ int main() {
 	for (int i = 0; i < N; ++i) {
 		for (int j = 0; j < M; ++j) {
 			cin >> castle[i][j];
-
 			if (castle[i][j] == 2) {
 				graam.first = i;
 				graam.second = j;
