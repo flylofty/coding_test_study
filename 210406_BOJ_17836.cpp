@@ -51,12 +51,12 @@ int bfs(int s_x, int s_y, int e_x, int e_y) {
 		}
 	}
 
-	return 0;
+	return INF;
 }
 
 int main() {
 
-	ios::sync_with_stdio(0),cin.tie(0);
+	ios::sync_with_stdio(0), cin.tie(0);
 
 	cin >> N >> M >> T;
 	for (int i = 0; i < N; ++i) {
@@ -71,15 +71,10 @@ int main() {
 	}
 
 	int withOutGraam = bfs(0, 0, N - 1, M - 1);
-
-	if (withOutGraam == 0)
-		withOutGraam = INF;
 	
 	int withGraam = bfs(0, 0, graam.first, graam.second);
 
-	if (withGraam == 0)
-		withGraam = INF;
-	else
+	if (withGraam != INF)
 		withGraam = withGraam + (N - 1 - graam.first + M - 1 - graam.second);
 
 	Min = min(withGraam, withOutGraam);
