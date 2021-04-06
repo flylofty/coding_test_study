@@ -56,7 +56,7 @@ int bfs(int s_x, int s_y, int e_x, int e_y) {
 
 int main() {
 
-	ios::sync_with_stdio(0), cin.tie(0);
+	ios::sync_with_stdio(0),cin.tie(0);
 
 	cin >> N >> M >> T;
 	for (int i = 0; i < N; ++i) {
