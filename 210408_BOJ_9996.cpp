@@ -5,7 +5,6 @@ using namespace std;
 
 int N;
 string pattern;
-int L = 0, R = 0;
 
 bool isCorrect(string& str) {
 
