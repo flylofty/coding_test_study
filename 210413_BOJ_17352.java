@@ -1,15 +1,11 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 import java.util.StringTokenizer;
 
 public class Main {
 
     static int[] group = new int[300001];
-    static Set<Integer> s = new HashSet<>();
 
     public static void main(String[] args) throws IOException {
 
@@ -29,13 +25,13 @@ public class Main {
             isSameGroup(a, b);
         }
 
-        for(int i = 1; i <= N; ++i)
-            s.add(find(i));
-
-        Iterator<Integer> it = s.iterator();
-        while (it.hasNext())
-            System.out.print(it.next() + " ");
-
+        for(int i = 1; i < N; ++i) {
+            if (!isSameGroup(i, i + 1)) {
+                System.out.print(i + " ");
+                System.out.println(i + 1);
+                break;
+            }
+        }
     }
 
     static int find(int a) {
