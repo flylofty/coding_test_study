@@ -46,6 +46,11 @@ int KMP() {
 
 int main() {
 
+    /**
+    * 참고
+    * https://www.youtube.com/watch?v=yWWbLrV4PZ8
+    */
+
 	ios::sync_with_stdio(0);
 	cin.tie(0), cout.tie(0);
 
