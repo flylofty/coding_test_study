@@ -9,12 +9,11 @@ using namespace std;
 vector<int> solution(vector<string> enroll, vector<string> referral, vector<string> seller, vector<int> amount) {
 	vector<int> answer;
 
-	map<string, pair<int, int>> position;
-	//answer.push_back(0);
-	//position["-"] = { answer.size() - 1, -1 };
+	map<string, int> position;
+
 	for (int i = 0; i < enroll.size(); ++i) {
 		answer.push_back(0);
-		position[enroll[i]] = { i, i };
+		position[enroll[i]] = i;
 	}
 
 	for (int i = 0; i < seller.size(); ++i) {
@@ -35,9 +34,9 @@ vector<int> solution(vector<string> enroll, vector<string> referral, vector<stri
 				a = profit - b;
 			}
 
-			answer[position[child].first] += a;
+			answer[position[child]] += a;
 
-			string parent = referral[position[child].second];
+			string parent = referral[position[child]];
 
 			child = parent;
 			profit = b;
