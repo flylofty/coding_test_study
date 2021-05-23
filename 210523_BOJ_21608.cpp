@@ -11,15 +11,6 @@ int classRoom[21][21];
 bool like[401][401]{ false };
 int dir[4][2]{ { -1, 0 }, { 0, -1 }, { 0, 1 }, { 1, 0 } };
 
-bool isEmpty(vector<II> v[5]) {
-
-	for (int i = 0; i < 5; ++i) {
-		if (!v[i].empty())
-			return false;
-	}
-	return true;
-}
-
 int main() {
 
 	ios::sync_with_stdio(0);
