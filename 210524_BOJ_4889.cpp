@@ -45,7 +45,7 @@ int main() {
 			else if (left == '}' && right == '}')
 				cnt++;
 			else
-				cnt++, cnt++;
+				cnt += 2;
 		}
 
 		cout << idx << ". " << cnt << "\n";
